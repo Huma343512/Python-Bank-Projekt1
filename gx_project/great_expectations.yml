@@ -1,0 +1,65 @@
+fluent_datasources:
+  my_pandas_ds:
+    type: pandas
+    id: 0a06a28f-0739-453e-8bf6-e6a5d4a4ab48
+    assets:
+      transactions_asset_v2:
+        type: dataframe
+        id: 9dd9dc69-fa96-46ee-8e13-5aa3d71620bf
+        batch_metadata: {}
+      transactions_asset:
+        type: dataframe
+        id: 0e416974-8d81-4efb-ad67-ba5539bb9a0a
+        batch_metadata: {}
+  my_pandas_ds_v2:
+    type: pandas
+    id: 2a250209-b3ce-488c-9af1-9d52a2436633
+    assets:
+      transactions_asset:
+        type: dataframe
+        id: 34535d43-efb7-401c-b7a7-beec485031d4
+        batch_metadata: {}
+config_version: 4.0
+expectations_store_name: expectations_store
+validation_results_store_name: validation_results_store
+checkpoint_store_name: checkpoint_store
+plugins_directory:
+stores:
+  expectations_store:
+    class_name: ExpectationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: expectations/
+      root_directory: c:\Users\46722\Desktop\python-bank-projekt\gx_project
+  validation_results_store:
+    class_name: ValidationResultsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/validations/
+      root_directory: c:\Users\46722\Desktop\python-bank-projekt\gx_project
+  validation_definition_store:
+    class_name: ValidationDefinitionStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: validation_definitions/
+      root_directory: c:\Users\46722\Desktop\python-bank-projekt\gx_project
+  checkpoint_store:
+    class_name: CheckpointStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      suppress_store_backend_id: true
+      base_directory: checkpoints/
+      root_directory: c:\Users\46722\Desktop\python-bank-projekt\gx_project
+data_docs_sites:
+  local_site:
+    class_name: SiteBuilder
+    show_how_to_buttons: true
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/data_docs/local_site/
+      root_directory: c:\Users\46722\Desktop\python-bank-projekt\gx_project
+    site_index_builder:
+      class_name: DefaultSiteIndexBuilder
+config_variables_file_path:
+analytics_enabled:
+data_context_id: 2a0d4cb3-37c7-425f-be70-1d0cc4092b4b

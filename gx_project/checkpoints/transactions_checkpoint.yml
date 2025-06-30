@@ -1,0 +1,11 @@
+name: transactions_checkpoint
+config_version: 1.0
+class_name: Checkpoint
+validations:
+  - batch_request:
+      datasource_name: my_pandas_ds
+      data_asset_name: transactions_asset
+      options:
+        dataframe: !!python/object/apply:pandas.read_pickle
+          - !!python/tuple ["data/transactions.pkl"]
+    expectation_suite_name: transactions_suite

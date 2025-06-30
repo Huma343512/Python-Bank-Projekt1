@@ -1,0 +1,18 @@
+{
+  "expectations": [
+    {
+      "id": "44f5f8e8-5860-4933-b49f-eabfa60981b6",
+      "kwargs": {
+        "column": "amount"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    }
+  ],
+  "id": "1f892837-0bac-4fca-a3f5-a97c3bb81641",
+  "meta": {
+    "great_expectations_version": "1.5.3"
+  },
+  "name": "transactions_suite",
+  "notes": null
+}

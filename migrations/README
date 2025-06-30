@@ -1,0 +1,73 @@
+ Python Bank Projekt
+
+Detta projekt är ett ETL-flöde (Extract, Transform, Load) för att bearbeta kund- och transaktionsdata i ett banksystem.
+Workflowen körs med hjälp av Prefect ett modernt ramverk för dataflöden och pipelinehantering.
+
+
+ Funktioner
+
+1. Ladda och rensa kunddata.
+2. Ladda och rensa transaktionsdata.
+3. Identifiera och flagga misstänkta transaktioner.
+4. Importera rensad data till PostgreSQL-databas.
+
+
+
+ Workflow med Prefect
+
+Prefect används för att strukturera arbetsflödet i `flow_main.py`. Flödet består av följande steg:
+
+- run_validation`: Rensar och validerar kund- och transaktionsdata.
+- import_customers`: Läser in rensade kunder till databasen.
+- import_transactions`: Läser in rensade transaktioner.
+- import_flagged`: Läser in flaggade transaktioner.
+
+Du ser loggar och körningsstatus i Prefect UI.
+
+
+
+ Så här körs  Prefect-flowet
+
+1. Starta Prefect servern (lokalt)
+   Öppna ett terminalfönster och kör:
+
+   bash
+   prefect server start
+
+   Detta startar dashboarden på `http://127.0.0.1:4200.
+
+2. I ett nytt terminalfönster – aktivera din miljö
+   bash
+   .venv\Scripts\activate  # på Windows
+
+
+3. Kör flödet
+   bash
+   python flow_main.py
+
+
+   Du kommer att se en länk till flow-run i loggen, t.ex.
+
+
+   View at http://127.0.0.1:4200/runs/flow-run/xxxxxxxx-xxxx
+
+
+
+  Resultat
+
+  När flödet körs, skapas och sparas:
+
+-  Rensade kunder: `data/clean/customers_clean.csv.
+-  Rensade transaktioner: `data/clean/transactions_clean.csv.
+-  Flagged transaktioner: `data/clean/flagged_transactions.csv.
+
+  Samtidigt laddas dessa in i din PostgreSQL-databas.
+
+  Använda teknologier och bibliotek
+
+- Python 3.10 – programmeringsspråket för hela projektet.
+- Pandas – för att läsa, bearbeta och rensa kund- och transaktionsdata.
+- Prefect – för att skapa, hantera och övervaka ETL-workflows.
+- PostgreSQL– databas för att lagra informationen.
+- **SQLAlchemy – koppling mellan Python och databasen.
+- **pytest – för att kunna testa funktioner automatiskt.
