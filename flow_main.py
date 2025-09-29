@@ -1,6 +1,10 @@
 from prefect import flow, task
-import subprocess
-import sys
+import subprocess, sys
+from reset_db import reset_database   #  importera reset
+
+@task
+def reset_db_task():
+    reset_database()  #  kör reset
 
 @task
 def run_validation():
@@ -20,12 +24,14 @@ def import_flagged():
 
 @flow(name="ETL-bank-flow")
 def full_pipeline():
+    reset_db_task()        #  körs alltid först
     run_validation()
     import_customers()
     import_transactions()
     import_flagged()
-    print(" Klart! Allt är importerat.")
+    print(" Klart! Databasen är nollställd och all data är importerad.")
 
 if __name__ == "__main__":
     full_pipeline()
+
 
